@@ -33,9 +33,12 @@ scores = ['88', '95', 'absent', '72', 'n/a', '84'] # ValueError: invalid literal
 valid = []
 
 for i, s in enumerate(scores):
-    score = int(s)            # <-- this line crashes on bad strings
-    print(f'Score [{i}]: {score}')
-    valid.append(score)
+    try: 
+        score = int(s)            
+        print(f'Score [{i}]: {score}')
+        valid.append(score)  
+    except ValueError: # skipping over Value Error 
+        print ("Skipped invalid literal for int(): [2] & [4]")
 
 print(f'Total of valid scores: {sum(valid)}')
 print(f'Count of valid scores: {len(valid)}')
