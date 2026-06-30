@@ -28,7 +28,7 @@
 #   Count of valid scores: 4
 # ============================================================
 
-scores = ['88', '95', 'absent', '72', 'n/a', '84']
+scores = ['88', '95', 'absent', '72', 'n/a', '84'] # ValueError: invalid literal for int() with base 10: 'absent'
 
 valid = []
 
