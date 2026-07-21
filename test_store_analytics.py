@@ -40,15 +40,15 @@ def test_parse_order_row_valid_row():
 
 
 # --- Your tests go below here ----------------------------------------------
-def test_parse_order_row_valid_row1():
-    row = ["1001", "Widget", "4", "9.99", "alice@example.com"]
+#test Number 1 
+def test_parse_order_row_invalid_row():
+    row = ["1001", "Widget", "4", "9.99"]
     order = parse_order_row(row)
     assert order == {
         "order_id": "1001",
         "product": "widget",
         "quantity": 4,
-        "unit_price": 9.99,
-        "customer_email": "alice@example.com",
+        "unit_price": 9.99
     }
 
 
