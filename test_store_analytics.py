@@ -40,16 +40,39 @@ def test_parse_order_row_valid_row():
 
 
 # --- Your tests go below here ----------------------------------------------
-#test Number 1 
+#test 1: invalid rows
+
 def test_parse_order_row_invalid_row():
     row = ["1001", "Widget", "4", "9.99"]
-    order = parse_order_row(row)
-    assert order == {
-        "order_id": "1001",
-        "product": "widget",
-        "quantity": 4,
-        "unit_price": 9.99
-    }
+    with pytest.raises(ValueError):
+        parse_order_row(row)
+    
+# test 2: using floats instead of int
 
+def test_parse_order_row_different_quantity():
+    row = ["1001", "Widget", "1.2", "9.99", "alice@example.com"]
+    with pytest.raises(ValueError):
+        parse_order_row(row)
 
+# test 3: price becomes negative
+
+def test_parse_order_row_negative_price():
+    row = ["1001", "Widget", "4", "-2", "alice@example.com"]
+    with pytest.raises(ValueError):
+        parse_order_row(row)
+
+# test 4: loyalty tier
+# def loyalty_tier(total_spent):
+    #
+        #total_spent < 100            -> "none"
+       # 100 <= total_spent < 500     -> "silver"
+        #500 <= total_spent < 1000    -> "gold"
+        #total_spent >= 1000          -> "platinum"
+   # Raises ValueError if total spent is negative.
+
+def test_loyalty_below_silver():
+    assert loyalty_tier(99) == 'none'
+
+def test_loyalty_at_silver():
+    assert loyalty_tier(100) == 'none'
 
