@@ -44,8 +44,8 @@ def test_parse_order_row_valid_row():
 
 def test_parse_order_row_invalid_row():
     row = ["1001", "Widget", "4", "9.99"]
-    # with pytest.raises(ValueError):
-    assert parse_order_row(row)
+    with pytest.raises(ValueError):
+        parse_order_row(row)
     
 # test 2: using floats instead of int
 
@@ -75,4 +75,14 @@ def test_loyalty_below_silver():
 
 def test_loyalty_at_silver():
     assert loyalty_tier(100) == 'none'
+
+# test 5: n being negtaive for top_n_products(summary, n=3)
+    # use placeholder values 
+    # n = -1 
+    def test_top_n_product():
+        summary = {
+            "item": {"total_quantity": 5, "total_revenue": 500, "order_count": 20}
+        }
+        with pytest.raises(ValueError)
+            top_n_product(summary, n=-1)
 
